@@ -61,3 +61,9 @@ select {
   font-size: 6em;
   margin-top: -0.15em;
 }
+
+#maxTemp, #minTemp {
+  font-size: 1em;
+  display: inline-block;
+  padding: 0 10px;
+}

@@ -13,7 +13,7 @@ $(function() {
     // tempFormat = parseInt(tempFormat);
     var tempFormat = document.getElementById('tempFormat');
     tempFormat = tempFormat.value;
-    console.log("tempFormat is "+tempFormat);
+    // console.log("tempFormat is "+tempFormat);
 
 
     if(tempFormat == "f")
@@ -41,7 +41,7 @@ $(function() {
       var url = api+city+apiKey+units;
 
       // setInterval(fetchData, 3000);
-      var fetchData = $.getJSON(url, gotData);
+      var fetchData = $.getJSON(url, gotData, "jsonp");
 
     }
     else{
@@ -58,16 +58,19 @@ $(function() {
     var currentCountry = data.sys.country;
     var currentWeather = data.weather[0].main;
     var currentTemperature = data.main.temp;
+    var minTemp = data.main.temp_min;
+    var maxTemp = data.main.temp_max;
+
     var currentIcon = data.weather[0].icon;
     var iconURL = "http://openweathermap.org/img/w/" + currentIcon + ".png";
-    console.log(iconURL);
 
     currentTemperature = Math.floor(currentTemperature);
 
     document.getElementById("city").innerHTML = currentCity;
     // document.getElementById("country").innerHTML = currentCountry;
     document.getElementById("weather").innerHTML = currentWeather;
-
+    document.getElementById('maxTemp').innerHTML = "High: " + maxTemp;
+    document.getElementById('minTemp').innerHTML = "Low: " + minTemp;
 
     //Uncomment if need to add weather icons
     // var x = document.createElement("IMG");
@@ -81,13 +84,26 @@ $(function() {
     else{document.getElementById("temperature").innerHTML = currentTemperature +   "&#8451";}
 
     var currentBackgroundImg = currentWeather+".jpg";
-    currentBackgroundImg = '"' + currentBackgroundImg +'"';
+    currentBackgroundImg = '"' + "/images/"+ currentBackgroundImg +'"';
     // console.log(currentBackgroundImg);
     $('.well').css('backgroundImage','url('+currentBackgroundImg+')');
 
 
   }//end gotData
 
+//Enter for submit
+$(function() {
+    $('.form').each(function() {
+        $(this).find('input').keypress(function(e) {
+            // Enter pressed?
+            if(e.which == 10 || e.which == 13) {
+                this.form.submit();
+            }
+        });
 
-
+        $(this).find('input[type=submit]').hide();
+    });
 });
+
+
+});//end ready function
