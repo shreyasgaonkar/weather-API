@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="well hidden">
+
+          <span id="city">City Name </span>
+          <!-- <span id="country">as</span> -->
+          <span id="weather">City Weather</span>
+          <span id="temperature">City Temperature</span>
+
+        </div><!-- end well -->
+
+        <h3>Show weather for: </h3>
+        <div style="overflow: auto;">
+          <input type="text"  value="Chicago" id="enteredCity">
+
+
+          <select name="format" id="tempFormat">
+            <option value="f" selected="selected">Farenheit</option>
+            <option value="c">Celcius</option>
+          </select>
+
+          <button type="submit" class="btn btn-success" id="submit">Submit</button>
+
+        </div>
+      </div><!-- end col-md-6 -->
+
+      
+
+
+    </div>
+  </div>
+
+  <script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+  <script type="text/javascript" src="script.js">
+  </script>
+</body>
+</html>

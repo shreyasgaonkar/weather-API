@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+input {
+  padding: 5px;
+}
+
+select {
+  padding: 7px;
+}
+
+.hidden {
+  display: none;
+}
+
+.animate {
+  animation: fadeIn 1000ms ease-in-out;
+  /*transition: margin 3000ms cubic-bezier(0.17, 0.04, 0.03, 0.94);*/
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.well {
+  margin: 20px 0;
+  text-align: center;
+  background-image: url("Rains.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.well span {
+  display: block;
+  color: white;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  /*border: 1px solid red;*/
+}
+
+#city {
+  font-size: 2em;
+}
+
+#weather {
+  font-size: 1.5em;
+}
+
+#temperature {
+  font-size: 6em;
+  margin-top: -0.15em;
+}

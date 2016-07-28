@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="description" content="This is a simple CSS, HTML, and JS Test">
+
+  <title>WebToMed Website Developer Test</title>
+
+  <style>
+  /* Add all CSS enteries here */
+  *{
+    box-sizing: border-box;
+  }
+
+  .row{
+    width: 100%;
+    display: block;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  #div_1{
+    float:left;
+    width: 300px;
+    height:50px;
+    background: rgb(255,0,0);
+    text-align: left;
+  }
+
+  #div_2{
+    float: left;
+    -webkit-box-flex:1;
+    -webkit-flex:1;
+    -ms-flex:1;
+    flex:1;
+    height:50px;
+    background: rgb(0,255,0);
+    text-align: center;
+  }
+
+  #div_3{
+    float:right;
+    width: 350px;
+    height:50px;
+    background: rgb(0,0,255);
+    color: rgb(255,255,255);
+    text-align: right;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  #div_4{
+    height: 300px;
+    background: rgb(255,255,0);
+    position: relative;
+  }
+
+  #div_5{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  #div_6 {
+    border: 3px solid black;
+    margin: 10px 0 0 0;
+    padding: 20px;
+  }
+
+  </style>
+</head>
+
+
+<body>
+
+  <!-- Modify this block of divs - START -->
+  <div class="row">
+    <div id="div_1" >LEFT COL STATIC WIDTH 300px</div>
+    <div id="div_2">CENTER COL DYNAMIC WIDTH</div>
+    <div id="div_3">RIGHT COL STATIC WIDTH 350px</div>
+  </div>
+  <div id="div_4">
+    <div id="div_5">
+      This text should be centered horizontally and vertically.
+    </div>
+  </div>
+  <div id="div_6">
+    Div Selector:
+    <!-- Place Div Select Here -->
+    <select id="divSelection">
+      <option value="div_1" selected="selected">Div 1</option>
+      <option value="div_2">Div 2</option>
+      <option value="div_3">Div 3</option>
+    </select>
+    <br /><br />
+    Color Selector:
+    <!-- Place Color Select Here -->
+    <select id="colorSelection">
+      <option value="#333333">Gray 1</option>
+      <option value="#777777">Gray 2</option>
+      <option value="#CCCCCC">Gray 3</option>
+    </select>
+    <!-- Place "Change Color" Button Here -->
+    <button onclick="changeColor()">Change Color</button>
+  </div>
+  <!-- Modify this block of divs - END -->
+
+
+  <br />
+  <hr />
+  <div><strong>Your end result should look like this (do not modify anything below this line):</strong></div>
+  <br />
+  <img src="http://careers-test.webtomed.com/assets/images/test.gif" width="1024" height="484" />
+
+  <script>
+  /* Add any JavaScript here */
+
+  function changeColor() {
+
+    var divSelected = document.getElementById('divSelection');
+    divSelected = divSelected.value;
+    console.log(divSelected);
+
+    var colorSelected = document.getElementById('colorSelection');
+    colorSelected = colorSelected.value;
+    console.log(colorSelected);
+
+    var temp = document.getElementById(divSelected);
+    temp.style.backgroundColor = colorSelected;
+
+  }
+
+  </script>
+
+</body>
+</html>
