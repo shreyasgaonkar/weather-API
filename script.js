@@ -113,4 +113,11 @@ $(function() {
         $(this).find('input[type=submit]').hide();
     });
 
+    //Enter key press for submit
+    $(document).keypress(function(e){
+        if (e.which == 13){
+            $("#submit").click();
+        }
+    });
+
 });//end ready function
