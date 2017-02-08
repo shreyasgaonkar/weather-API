@@ -4,6 +4,7 @@ ehthumbs.db
 *.cfg
 *.config
 /src/
+sitemap.xml
 
 # Folder config file
 Desktop.ini
