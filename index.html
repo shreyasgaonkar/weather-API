@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <div class="well hidden">
+                <div class="well hidden" style="display: none;">
 
                     <span id="city">City Name </span>
                     <!-- <span id="country">as</span> -->
@@ -48,40 +48,49 @@
 
                 <!-- LHS -->
                 <div class="location">
-                    <span class="city">Chicago,</span>
-                    <span class="state"> IL</span>
+                    <span class="city">Mumbai,</span>
+                    <span class="country"> India</span>
                 </div>
 
                 <!-- RHS -->
                 <div class="date-time">
                     <span class="ion-ios-location loc-icon"></span>
-                    <span class="loc">Chicago, USA</span>
-                    <span class="time"> 11:10 PM</span>
+                    <span id="loc">Mumbai, IN</span>
+                    <span id="time"> 11:10 PM</span>
                 </div>
-
-
 
                 <div class="weather-options  text-center">
-                        <div class="col-sm-2" id="option-1">
-                            <a href="#/">Weather</a>
+                    <div class="col-sm-4" id="option-1">
+                        <a href="#/">
+                            <span class="ion-ios-sunny-outline"></span>
+                            Weather</a>
                         </div>
-                        <div class="col-sm-2"  id="option-2">
-                            <a href="#/">News & Events</a>
-                        </div>
-                        <div class="col-sm-2"  id="option-3">
-                            <a href="#/">Gallery</a>
-                        </div>
-                </div>
-            </div> <!-- end weather -->
+                        <div class="col-sm-4"  id="option-2">
+                            <a href="#/">
+                                <span class="ion-ios-sunny-outline"></span>
+                                News &amp; Events</a>
+                            </div>
+                            <div class="col-sm-4"  id="option-3">
+                                <a href="#/">
+                                    <span class="ion-ios-sunny-outline"></span>
+                                    Gallery</a>
+                                </div>
+                            </div>
+                        </div> <!-- end weather -->
 
 
-            <div class="col-md-12 weather-info">
-                82
-            </div>
-        </div> <!-- end row -->
+                        <div class="col-md-12 weather-info">
+                            <div class="row">
+                                <div class="current-temperature">
+                                    82
+                                </div>
+                                <div class="current-weather">F</div>
+                            </div>
+                        </div>
+                    </div> <!-- end row -->
 
-        <script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
-        <script type="text/javascript" src="script.js">
-        </script>
-    </body>
-    </html>
+                    <script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+                    <script type="text/javascript" src="/src/js/script.js">
+                    </script>
+                </body>
+                </html>
