@@ -1,32 +1,36 @@
-*{
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
+@import "http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css";
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
 
+$font-family1: 'Sanchez', serif;
+
+*{
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
 }
 
 html, body{
-  padding: 0;
-  margin: 0;
-  border: 0;
-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 input{
-  padding: 5px;
-  // border-radius: 5px;
+    padding: 5px;
+    // border-radius: 5px;
 }
 
 select {
-  padding: 7px;
+    padding: 7px;
 }
 
 .hidden{
-  display: none;
+    display: none;
 }
 
 .animate{
-  animation: fadeIn 1000ms ease-in-out;
-  /*transition: margin 3000ms cubic-bezier(0.17, 0.04, 0.03, 0.94);*/
+    animation: fadeIn 1000ms ease-in-out;
+    /*transition: margin 3000ms cubic-bezier(0.17, 0.04, 0.03, 0.94);*/
 }
 
 @keyframes fadeIn {
@@ -35,35 +39,160 @@ select {
 }
 
 .well{
-  margin: 20px 0;
-  text-align: center;
-  background-image: url("Rains.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
+    margin: 20px 0;
+    text-align: center;
+    background-image: url("/images/Rain.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .well span{
-  display: block;
-  color: white;
-  text-shadow: 2px 2px rgba(#000, 0.5);
-  /*border: 1px solid red;*/
+    display: block;
+    color: white;
+    text-shadow: 2px 2px rgba(#000, 0.5);
+    /*border: 1px solid red;*/
 }
 
-#city {
-  font-size: 2em;
-}
-
-#weather{
-  font-size: 1.5em;
-}
+#city {  font-size: 2em; }
+#weather{ font-size: 1.5em; }
 
 #temperature{
-  font-size: 6em;
-  margin-top: -0.15em;
+    font-size: 6em;
+    margin-top: -0.15em;
 }
 
 #maxTemp, #minTemp {
-  font-size: 1em;
-  display: inline-block;
-  padding: 0 10px;
+    font-size: 1em;
+    display: inline-block;
+    padding: 0 10px;
+}
+
+.row {
+    margin:0 !important;
+}
+
+.weather {
+    background: red;
+    background: url("https://unsplash.it/1600/900?gravity=east") no-repeat 50% 50%;
+    background-size: cover;
+    max-width: 100vw;
+    height: 500px;
+    color: white;
+    position: relative;
+}
+
+.location {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
+
+.date-time {
+    position: absolute;
+    right: 50px;
+    top: 30px;
+    text-align: right;
+
+    .loc-icon {
+        display: block;
+        text-align: right;
+        font-size: 5rem;
+    }
+
+}
+
+.date-time {
+    font-family: 'Sanchez', serif;
+    #loc, #time  {
+        display: block;
+    }
+}
+
+.city {
+    color: rgba(white, 0.9);
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-family: 'Sanchez', serif;
+    font-size: 5rem;
+}
+
+.state {
+    text-transform: uppercase;
+    font-family: 'Sanchez', serif;
+    font-size: 3rem;
+    color: rgba(white, 0.5);
+}
+
+.blank {
+    background: transparent !important;
+}
+
+//Weather setting buttons
+.weather-options {
+    width: 100%;
+    position: absolute;
+    bottom: 0 !important;
+    left: 0;
+    text-transform: uppercase;
+    background: rgba(black, 0.25);
+
+    .ion-ios-sunny-outline {
+        font-size: 3rem;
+    }
+
+}
+
+#option-1, #option-2, #option-3 {
+    color: white;
+    padding-bottom: 10px;
+    border-bottom: 5px solid transparent;
+
+    &:hover {
+        cursor: pointer;
+        border-bottom: 5px solid green;
+    }
+
+    a {
+        font-family: $font-family1;
+        letter-spacing: 1.5px;
+        font-size: 1.75rem;
+        color: inherit;
+        text-decoration: none;
+    }
+
+    a:hover, a:active, a:focus, a:blur {
+        color: inherit;
+
+        text-decoration: none;
+    }
+}
+
+.weather-info {
+    position: relative;
+    display: block;
+    height: 200px;
+    min-height: 300px;
+    background: black;
+    //background: rgba(grey, 0.3);
+
+    .row {
+        position: absolute;
+        top: 50%;
+        left: 10%;
+        transform: translate(-10%, -50%);
+
+        div {
+            display: inline-block;
+        }
+    }
+
+    .current-temperature {
+        color: rgba(white, 0.75);
+        font-size: 15rem;
+        // padding: 0 20px;
+    }
+
+    .current-weather {
+        color: orange;
+    }
 }
