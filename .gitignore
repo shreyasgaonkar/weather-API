@@ -5,6 +5,8 @@ ehthumbs.db
 *.config
 /src/
 sitemap.xml
+config.js
+script1.js
 
 # Folder config file
 Desktop.ini

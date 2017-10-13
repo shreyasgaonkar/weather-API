@@ -1,11 +1,71 @@
-$(function() {
+$(document).ready(function() {
+    var city, state, country, countryCode, timezone, bgimages, imgURL;
+    var currentTime;
+    var appID = config.appID;
+    var appSecret = config.appSecret;
 
-    $("#submit").click(function() {
+    var rawData = $.getJSON('http://freegeoip.net/json/',loc, "jsonp");
+
+
+    function img(data) {
+        var len = (data.results).length;
+        var number = Math.floor(Math.random() * len) + 1;
+        number = number.toString();
+        if(!number) {number = 0;}
+        console.log(number);
+        // imgURLfull = data.results[number].urls.full;
+        imgURL = data.results[number].urls.regular;
+        console.log(imgURL);
+        //bgimages = data.results;
+    }
+
+
+
+    var fullData;
+    function loc(data) {
+        fullData=data;
+    }
+
+    // Set location as per the ip address from ISP
+    setTimeout(function(){
+        // console.log(fullData);
+        city = fullData.city;
+        state = fullData.region_code;
+        country = fullData.country_name;
+        countryCode = fullData.country_code;
+
+
+        // Uncomment this line later
+        var bgImg = $.getJSON("https://api.unsplash.com/search/photos?page=1&query="+ city +"&client_id=" + appID, img, "jsonp");
+
+        $('#enteredCity').val(city);
+        //trigger the click
+        click();
+    }, 200);
+
+    function getImage() {
+        setTimeout(function() {
+            $('.weather').css('background-image', 'url('+imgURL+')');
+        }, 500);
+    }
+    getImage();
+
+    function getTimeZone(data) {
+        currentTime = (data.data.time_zone["0"].localtime).split(" ")[1];
+        if(currentTime.split(":")[0] > 12) {
+            currentTime = currentTime.split(":")[0] - 12 + ":" + currentTime.split(":")[1] + ' PM';
+        } else {
+            currentTime = currentTime + ' AM';
+        }
+        console.log(currentTime);
+    }
+
+    function click() {
+        city = $('#enteredCity').val();
+        timezone = $.getJSON("http://api.worldweatheronline.com/premium/v1/tz.ashx?q=" + city + "&key=" + config.timeAPI + "&format=json",getTimeZone, "jsonp");
 
         // tempFormat = parseInt(tempFormat);
-        var tempFormat = document.getElementById('tempFormat');
-        tempFormat = tempFormat.value;
-        // console.log("tempFormat is "+tempFormat);
+        var tempFormat = $('#tempFormat').val();
 
         if(tempFormat == "f")
         {
@@ -33,14 +93,11 @@ $(function() {
 
             // setInterval(fetchData, 3000);
             var fetchData = $.getJSON(url, gotData, "jsonp");
-
         }
         else{
             alert("Enter City name")
         }
-
-    });
-
+    }//end click
 
     function gotData(data){
         var tempFormat = document.getElementById('tempFormat');
@@ -68,13 +125,13 @@ $(function() {
 
         var currentIcon = data.weather[0].icon;
         var iconURL = "http://openweathermap.org/img/w/" + currentIcon + ".png";
-
         currentTemperature = Math.floor(currentTemperature);
 
         document.getElementById("city").innerHTML = currentCity;
         $(".city").html(currentCity + ",");
         $(".country").html(currentCountry);
         $("#loc").html(currentCity + ", " + currentCountry);
+        $("#time").html(currentTime);
         // document.getElementById("country").innerHTML = currentCountry;
         document.getElementById("weather").innerHTML = currentWeather;
         document.getElementById('maxTemp').innerHTML = "High: " + maxTemp;
@@ -101,23 +158,23 @@ $(function() {
         $('.well').css('backgroundImage','url('+currentBackgroundImg+')');
     }//end gotData
 
-    //Enter for submit
-    $('.form').each(function() {
-        $(this).find('input').keypress(function(e) {
-            // Enter pressed?
-            if(e.which == 10 || e.which == 13) {
-                this.form.submit();
-            }
-        });
 
-        $(this).find('input[type=submit]').hide();
+    $("#submit").click(function() {
+        click();
+    });
+    $("#enteredCity").change(function() {
+        var city = $("#enteredCity").val();
+        var bgImg = $.getJSON("https://api.unsplash.com/search/photos?page=1&query="+ city +"&client_id=" + appID, img, "jsonp");
+        getImage();
+        click();
+    });
+    $("#tempFormat").change(function() {
+        click();
     });
 
-    //Enter key press for submit
-    $(document).keypress(function(e){
-        if (e.which == 13){
-            $("#submit").click();
-        }
-    });
+
+    // $('#enteredCity, #tempFormat').change(function(){
+    //     click();
+    // });
 
 });//end ready function

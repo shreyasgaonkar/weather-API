@@ -1,1 +1,162 @@
-@import "http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css";@import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";*{box-sizing:border-box;-webkit-font-smoothing:antialiased}body,html{padding:0;margin:0;border:0;font-family:"Helvetica Neue", Helvetica, Arial, sans-serif}input{padding:5px}select{padding:7px}.hidden{display:none}.animate{-webkit-animation:fadeIn 1000ms ease-in-out;animation:fadeIn 1000ms ease-in-out}@-webkit-keyframes fadeIn{0%{opacity:0}to{opacity:1}}@keyframes fadeIn{0%{opacity:0}to{opacity:1}}.well{margin:20px 0;text-align:center;background-image:url("/images/Rain.jpg");background-repeat:no-repeat;background-position:center center}.well span{display:block;color:white;text-shadow:2px 2px rgba(0, 0, 0, 0.5)}#city{font-size:2em}#weather{font-size:1.5em}#temperature{font-size:6em;margin-top:-0.15em}#maxTemp,#minTemp{font-size:1em;display:inline-block;padding:0 10px}.row{margin:0!important}.weather{background:red;background:url("https://unsplash.it/1600/900?gravity=east") no-repeat 50% 50%;background-size:cover;max-width:100vw;height:500px;color:white;position:relative}.location{position:absolute;top:50px;left:50px}.date-time{position:absolute;right:50px;top:30px;text-align:right}.date-time .loc-icon{display:block;text-align:right;font-size:5rem}.date-time{font-family:'Sanchez', serif}.date-time #loc,.date-time #time{display:block}.city{color:rgba(255, 255, 255, 0.9);font-weight:600;letter-spacing:2px;font-family:'Sanchez', serif;font-size:5rem}.state{text-transform:uppercase;font-family:'Sanchez', serif;font-size:3rem;color:rgba(255, 255, 255, 0.5)}.blank{background:transparent!important}.weather-options{width:100%;position:absolute;bottom:0!important;left:0;text-transform:uppercase;background:rgba(0, 0, 0, 0.25)}.weather-options .ion-ios-sunny-outline{font-size:3rem}#option-1,#option-2,#option-3{color:white;padding-bottom:10px;border-bottom:5px solid transparent}#option-1:hover,#option-2:hover,#option-3:hover{cursor:pointer;border-bottom:5px solid green}#option-1 a,#option-2 a,#option-3 a{font-family:"Sanchez", serif;letter-spacing:1.5px;font-size:1.75rem;color:inherit;text-decoration:none}#option-1 a:active,#option-1 a:blur,#option-1 a:focus,#option-1 a:hover,#option-2 a:active,#option-2 a:blur,#option-2 a:focus,#option-2 a:hover,#option-3 a:active,#option-3 a:blur,#option-3 a:focus,#option-3 a:hover{color:inherit;text-decoration:none}.weather-info{position:relative;display:block;height:200px;min-height:300px;background:black}.weather-info .row{position:absolute;top:50%;left:10%;-webkit-transform:translate(-10%, -50%);-ms-transform:translate(-10%, -50%);transform:translate(-10%, -50%)}.weather-info .row div{display:inline-block}.weather-info .current-temperature{color:rgba(255, 255, 255, 0.75);font-size:15rem}.weather-info .current-weather{color:orange}
+@import "http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css";
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased; }
+
+html, body {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+input {
+  padding: 5px; }
+
+select {
+  padding: 7px; }
+
+.hidden {
+  display: none; }
+
+.animate {
+  -webkit-animation: fadeIn 1000ms ease-in-out;
+  animation: fadeIn 1000ms ease-in-out;
+  /*transition: margin 3000ms cubic-bezier(0.17, 0.04, 0.03, 0.94);*/ }
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+.well {
+  margin: 20px 0;
+  text-align: center;
+  background-image: url("/images/Rain.jpg");
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+.well span {
+  display: block;
+  color: white;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  /*border: 1px solid red;*/ }
+
+#city {
+  font-size: 2em; }
+
+#weather {
+  font-size: 1.5em; }
+
+#temperature {
+  font-size: 6em;
+  margin-top: -0.15em; }
+
+#maxTemp, #minTemp {
+  font-size: 1em;
+  display: inline-block;
+  padding: 0 10px; }
+
+.row {
+  margin: 0 !important; }
+
+.weather {
+  background: black;
+  background: url("https://unsplash.it/1600/900?gravity=east") no-repeat 50% 50%;
+  background-size: cover;
+  max-width: 100vw;
+  height: 500px;
+  color: white;
+  position: relative; }
+
+.location {
+  position: absolute;
+  top: 50px;
+  left: 50px; }
+
+.date-time {
+  position: absolute;
+  right: 50px;
+  top: 30px;
+  text-align: right; }
+  .date-time .loc-icon {
+    display: block;
+    text-align: right;
+    font-size: 5rem; }
+
+.date-time {
+  font-family: 'Sanchez', serif; }
+  .date-time #loc, .date-time #time {
+    display: block; }
+
+.city {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-family: 'Sanchez', serif;
+  font-size: 5rem; }
+
+.state {
+  text-transform: uppercase;
+  font-family: 'Sanchez', serif;
+  font-size: 3rem;
+  color: rgba(255, 255, 255, 0.5); }
+
+.blank {
+  background: transparent !important; }
+
+.weather-options {
+  width: 100%;
+  position: absolute;
+  bottom: 0 !important;
+  left: 0;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.25); }
+  .weather-options .ion-ios-sunny-outline {
+    font-size: 3rem; }
+
+#option-1, #option-2, #option-3 {
+  color: white;
+  padding-bottom: 10px;
+  border-bottom: 5px solid transparent; }
+  #option-1:hover, #option-2:hover, #option-3:hover {
+    cursor: pointer;
+    border-bottom: 5px solid green; }
+  #option-1 a, #option-2 a, #option-3 a {
+    font-family: "Sanchez", serif;
+    letter-spacing: 1.5px;
+    font-size: 1.75rem;
+    color: inherit;
+    text-decoration: none; }
+  #option-1 a:hover, #option-1 a:active, #option-1 a:focus, #option-1 a:blur, #option-2 a:hover, #option-2 a:active, #option-2 a:focus, #option-2 a:blur, #option-3 a:hover, #option-3 a:active, #option-3 a:focus, #option-3 a:blur {
+    color: inherit;
+    text-decoration: none; }
+
+.weather-info {
+  position: relative;
+  display: block;
+  height: 200px;
+  min-height: 300px;
+  background: black; }
+  .weather-info .row {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    -webkit-transform: translate(-10%, -50%);
+    -ms-transform: translate(-10%, -50%);
+    transform: translate(-10%, -50%); }
+    .weather-info .row div {
+      display: inline-block; }
+  .weather-info .current-temperature {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 15rem; }
+  .weather-info .current-weather {
+    color: orange; }
