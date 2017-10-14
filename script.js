@@ -108,7 +108,6 @@ $(document).ready(function() {
         var currentTemperature = data.main.temp;
         var minTemp = data.main.temp_min;
         var maxTemp = data.main.temp_max;
-
         var dateTime = data.dt;
         var myDate = new Date(dateTime);
 
@@ -143,12 +142,15 @@ $(document).ready(function() {
         //   document.getElementById("weather").appendChild(x);
 
         //Display temperature in C or F
-        if(tempFormat == "f") {
-            document.getElementById("temperature").innerHTML = currentTemperature +   "&#8457"; $(".current-temperature").html(currentTemperature);
-        }
-        else{
-            document.getElementById("temperature").innerHTML = currentTemperature +   "&#8451"; $(".current-temperature").html(currentTemperature);
-        }
+        // if(tempFormat == "f") {
+        //     // document.getElementById("temperature").innerHTML = currentTemperature +   "&#8457"; $(".current-temperature").html(currentTemperature);
+        //     $("#temperature").html(currentTemperature);
+        // }
+        // else{
+        //     // document.getElementById("temperature").innerHTML = currentTemperature +   "&#8451"; $(".current-temperature").html(currentTemperature);
+        //     $("#temperature").html(currentTemperature);
+        // }
+        $("#temperature").html(currentTemperature);
         tempFormat = tempFormat.toUpperCase();
         $("div.current-weather").html(tempFormat);
         //Change background image to match with the current weather

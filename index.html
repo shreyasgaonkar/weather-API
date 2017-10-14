@@ -15,83 +15,86 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <div class="well hidden" style="display: none;">
+                <div class="well">
 
                     <span id="city">City Name </span>
                     <!-- <span id="country">as</span> -->
                     <span id="weather">City Weather</span>
                     <span id="temperature">City Temperature</span>
-                    <div><span id="maxTemp">Max Temp</span>
-                        <span id="minTemp">Min Temp</span></div>
-
-                    </div><!-- end well -->
-
-                    <h3>Show weather for: </h3>
-                    <div style="overflow: auto;" class="form">
-
-                        <input type="text"  value="Chicago" id="enteredCity">
-
-
-                        <select name="format" id="tempFormat">
-                            <option value="f" selected="selected">Farenheit</option>
-                            <option value="c">Celcius</option>
-                        </select>
-
-                        <button type="submit" class="btn btn-success" id="submit">Submit</button>
+                    <div>
+                        <span id="maxTemp">Max Temp</span>
+                        <span id="minTemp">Min Temp</span>
                     </div>
-                </div><!-- end col-md-6 -->
 
+                </div><!-- end well -->
+            </div><!-- end col-md-6 -->
+            <div class="col-md-6">
+                <h3>Show weather for: </h3>
+                <div style="overflow: auto;" class="form">
+
+                    <input type="text"  value="Chicago" id="enteredCity">
+
+
+                    <select name="format" id="tempFormat">
+                        <option value="f" selected="selected">Farenheit</option>
+                        <option value="c">Celcius</option>
+                    </select>
+
+                    <button type="submit" class="btn btn-success" id="submit">Submit</button>
+                </div>
+            </div><!-- end col-md-6 -->
+
+        </div>
+    </div><!-- end container -->
+
+    <div class="row">
+        <div class="container weather">
+
+            <!-- LHS -->
+            <div class="location">
+                <span class="city">Mumbai,</span>
+                <span class="country"> India</span>
             </div>
-        </div><!-- end container -->
 
-        <div class="row">
-            <div class="col-md-12 weather">
+            <!-- RHS -->
+            <div class="date-time">
+                <span class="ion-ios-location loc-icon"></span>
+                <span id="loc">Mumbai, IN</span>
+                <span id="time"> 11:10 PM</span>
+            </div>
 
-                <!-- LHS -->
-                <div class="location">
-                    <span class="city">Mumbai,</span>
-                    <span class="country"> India</span>
-                </div>
-
-                <!-- RHS -->
-                <div class="date-time">
-                    <span class="ion-ios-location loc-icon"></span>
-                    <span id="loc">Mumbai, IN</span>
-                    <span id="time"> 11:10 PM</span>
-                </div>
-
-                <div class="weather-options  text-center">
-                    <div class="col-sm-4" id="option-1">
+            <div class="weather-options  text-center">
+                <div class="col-sm-4" id="option-1">
+                    <a href="#/">
+                        <span class="ion-ios-sunny-outline"></span>
+                        Weather</a>
+                    </div>
+                    <div class="col-sm-4"  id="option-2">
                         <a href="#/">
                             <span class="ion-ios-sunny-outline"></span>
-                            Weather</a>
+                            News &amp; Events</a>
                         </div>
-                        <div class="col-sm-4"  id="option-2">
+                        <div class="col-sm-4"  id="option-3">
                             <a href="#/">
                                 <span class="ion-ios-sunny-outline"></span>
-                                News &amp; Events</a>
-                            </div>
-                            <div class="col-sm-4"  id="option-3">
-                                <a href="#/">
-                                    <span class="ion-ios-sunny-outline"></span>
-                                    Gallery</a>
-                                </div>
-                            </div>
-                        </div> <!-- end weather -->
-
-
-                        <div class="col-md-12 weather-info">
-                            <div class="row">
-                                <div class="current-temperature">
-                                    82
-                                </div>
-                                <div class="current-weather">F</div>
+                                Gallery</a>
                             </div>
                         </div>
-                    </div> <!-- end row -->
+                    </div> <!-- end weather -->
 
-                    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
-                    <script type="text/javascript" src="/config.js"></script>
-                    <script type="text/javascript" src="/script.js"></script>
-                </body>
-                </html>
+
+                    <div class="col-md-12 weather-info">
+                        <div class="row">
+                            <div class="current-temperature">
+                                82
+                            </div>
+                            <div class="current-weather">F</div>
+                        </div>
+                    </div>
+                </div> <!-- end row -->
+
+                <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+                <script type="text/javascript" src="/config.js"></script>
+                <script type="text/javascript" src="/script.js"></script>
+            </body>
+            </html>

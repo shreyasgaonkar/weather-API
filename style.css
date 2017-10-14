@@ -71,8 +71,10 @@ select {
 .weather {
   background: black;
   background: url("https://unsplash.it/1600/900?gravity=east") no-repeat 50% 50%;
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
-  max-width: 100vw;
+  min-height: 60vh;
   height: 500px;
   color: white;
   position: relative; }
@@ -91,6 +93,19 @@ select {
     display: block;
     text-align: right;
     font-size: 5rem; }
+
+#enteredCity {
+  display: inline-block;
+  position: relative; }
+  #enteredCity:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    height: 1em;
+    width: 100%;
+    border-bottom: 1px solid;
+    margin-top: 5px; }
 
 .date-time {
   font-family: 'Sanchez', serif; }
