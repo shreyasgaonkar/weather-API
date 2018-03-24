@@ -49,6 +49,50 @@
 
     <div class="row">
         <div class="container weather">
+<script src="https://unpkg.com/brain.js@1.1.2/browser.min.js"></script>
+<script>
+
+function getRgb(hex) {
+  var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+  hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+      return r + r + g + g + b + b;
+  });
+
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+      r: Math.round(parseInt(result[1], 16) / 2.55) / 100,
+      g: Math.round(parseInt(result[2], 16) / 2.55) / 100,
+      b: Math.round(parseInt(result[3], 16) / 2.55) / 100,
+  } : null;
+}
+
+const rgb = getRgb("#000")
+
+const network = new brain.NeuralNetwork()
+
+network.train([
+    { input: { r: 0.62, g: 0.72, b: 0.88 }, output: { light: 1 } },
+    { input: { r: 0.1, g: 0.84, b: 0.72 }, output: { light: 1 } },
+    { input: { r: 0.33, g: 0.24, b: 0.29 }, output: { dark: 1 } },
+    { input: { r: 0.74, g: 0.78, b: 0.86 }, output: { light: 1 } },
+    { input: { r: 0.31, g: 0.35, b: 0.41 }, output: { dark: 1 } },
+    { input: {r: 1, g: 0.99, b: 0}, output: { light: 1 } },
+    { input: {r: 1, g: 0.42, b: 0.52}, output: { dark: 1 } },
+])
+
+const result = brain.likely(rgb, network)
+console.log(result)
+
+if (result === "dark") {
+    var fgColor = "white";
+} else {
+    var fgColor = "black";
+}
+console.log(fgColor);
+
+$('.city', '.country').css("color": fgColor);
+
+</script>
 
             <!-- LHS -->
             <div class="location">
@@ -94,6 +138,7 @@
                 </div> <!-- end row -->
 
                 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+                <script type="text/javascript" src="/time.js"></script>
                 <script type="text/javascript" src="/config.js"></script>
                 <script type="text/javascript" src="/script.js"></script>
             </body>

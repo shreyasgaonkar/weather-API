@@ -1,4 +1,6 @@
+
 $(document).ready(function() {
+
     var city, state, country, countryCode, timezone, bgimages, imgURL;
     var currentTime;
     var appID = config.appID;
@@ -50,7 +52,60 @@ $(document).ready(function() {
     }
     getImage();
 
+
+
+
+    function getCurrentTime(data) {
+
+        //https://www.amdoren.com/api/timezone.php?api_key=qer6be5kLvhm5ci5mfWP9cUzdYQV46&loc=New+York
+
+        console.log(data);
+
+        // var now = new Date();
+        // console.log((now));
+        // var tz = now.toString().split("GMT");
+        // tz = ((tz[0]).split(" ")[4]);
+        // var min = (tz.split(":")[1]);
+        // var hour = (tz.split(":")[0]);
+        // var am = " AM";
+        // if(hour>12) {
+        //     hour -= 12
+        //     am = " PM"
+        // }
+        // return (hour + ":" + min + am);
+    }
+
+    //timezone = $.getJSON("https://www.amdoren.com/api/timezone.php?api_key=qer6be5kLvhm5ci5mfWP9cUzdYQV46&loc=New+York",getCurrentTime, "jsonp");
+    //New Key -> https://www.amdoren.com/api/timezone.php?api_key=uL6BPxuYcFxqzg5NLMR8Gsixj8d7LW&loc=Chicago
+
+    function logResults(json){
+        console.log(json);
+    }
+
+    function getPictureAveragePixel(){
+        const image = document.getElementsByClassName('weather');
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        const width = 420;
+        const height = 140;
+
+        canvas.width = width;
+        canvas.height = height;
+
+        context.drawImage(image, 0, 0, width, height);
+
+        const data = context.getImageData(X, Y, 1, 1).data;
+
+        RED   = data[0]
+        GREEN = data[1]
+        BLUE  = data[2]
+        ALPHA = data[3]
+        return(RED, GREEN, BLUE);
+    }
+    console.log(getPictureAveragePixel());
+    
     function getTimeZone(data) {
+
         currentTime = (data.data.time_zone["0"].localtime).split(" ")[1];
         if(currentTime.split(":")[0] > 12) {
             currentTime = currentTime.split(":")[0] - 12 + ":" + currentTime.split(":")[1] + ' PM';
@@ -60,9 +115,14 @@ $(document).ready(function() {
         console.log(currentTime);
     }
 
+    //https://www.amdoren.com/api/timezone.php?api_key=qer6be5kLvhm5ci5mfWP9cUzdYQV46&loc=New+York
+
+
     function click() {
         city = $('#enteredCity').val();
         timezone = $.getJSON("http://api.worldweatheronline.com/premium/v1/tz.ashx?q=" + city + "&key=" + config.timeAPI + "&format=json",getTimeZone, "jsonp");
+        //timeNow = $.getJSON("https://www.amdoren.com/api/timezone.php?api_key=qer6be5kLvhm5ci5mfWP9cUzdYQV46&loc=New+York", getCurrentTime, "jsonp");
+
 
         // tempFormat = parseInt(tempFormat);
         var tempFormat = $('#tempFormat').val();
@@ -130,6 +190,7 @@ $(document).ready(function() {
         $(".city").html(currentCity + ",");
         $(".country").html(currentCountry);
         $("#loc").html(currentCity + ", " + currentCountry);
+        currentTime = getCurrentTime();
         $("#time").html(currentTime);
         // document.getElementById("country").innerHTML = currentCountry;
         document.getElementById("weather").innerHTML = currentWeather;
@@ -151,11 +212,12 @@ $(document).ready(function() {
         //     $("#temperature").html(currentTemperature);
         // }
         $("#temperature").html(currentTemperature);
+        $(".current-temperature").html(currentTemperature);
         tempFormat = tempFormat.toUpperCase();
         $("div.current-weather").html(tempFormat);
         //Change background image to match with the current weather
         var currentBackgroundImg = currentWeather+".jpg";
-        currentBackgroundImg = '"' + "/images/"+ currentBackgroundImg +'"';
+        currentBackgroundImg = '"' + "http://d252geuwm6rln6.cloudfront.net/"+ currentBackgroundImg +'"';
         // console.log(currentBackgroundImg);
         $('.well').css('backgroundImage','url('+currentBackgroundImg+')');
     }//end gotData

@@ -7,6 +7,10 @@ ehthumbs.db
 sitemap.xml
 config.js
 script1.js
+node_modules
+images
+readme.html
+time.js
 
 # Folder config file
 Desktop.ini
