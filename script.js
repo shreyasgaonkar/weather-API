@@ -8,20 +8,17 @@ $(document).ready(function() {
 
     var rawData = $.getJSON('http://freegeoip.net/json/',loc, "jsonp");
 
-
     function img(data) {
         var len = (data.results).length;
         var number = Math.floor(Math.random() * len) + 1;
         number = number.toString();
         if(!number) {number = 0;}
-        console.log(number);
+        //console.log(number);
         // imgURLfull = data.results[number].urls.full;
         imgURL = data.results[number].urls.regular;
         console.log(imgURL);
-        //bgimages = data.results;
+        // bgimages = data.results;
     }
-
-
 
     var fullData;
     function loc(data) {
@@ -35,7 +32,6 @@ $(document).ready(function() {
         state = fullData.region_code;
         country = fullData.country_name;
         countryCode = fullData.country_code;
-
 
         // Uncomment this line later
         var bgImg = $.getJSON("https://api.unsplash.com/search/photos?page=1&query="+ city +"&client_id=" + appID, img, "jsonp");
@@ -52,77 +48,49 @@ $(document).ready(function() {
     }
     getImage();
 
+    //
+    // $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + city + "&key=" + config.google,getCurrentTime, "jsonp");
+    //
+    //
+    // function getCurrentTime(data) {
+    //     var location = (data.results["0"].geometry.location);
+    //     var latitude = location.lat;
+    //     var longitude = location.lng;
+    //
+    //     console.log("latitude is " + latitude);
+    //     console.log("longitude is " + longitude);
+    //
+    //     //https://maps.googleapis.com/maps/api/timezone/json?location=37.77492950,-122.41941550&timestamp=1331161200&sensor=false
+    //
+    //     $.getJSON("https://maps.googleapis.com/maps/api/timezone/json?location=" + latitude + "," + longitude, gotData, "jsonp");
+    //
+    //     function gotData(data){
+    //         console.log(currentTime)
+    //     }
+    // }
 
 
-
-    function getCurrentTime(data) {
-
-        //https://www.amdoren.com/api/timezone.php?api_key=qer6be5kLvhm5ci5mfWP9cUzdYQV46&loc=New+York
-
-        console.log(data);
-
-        // var now = new Date();
-        // console.log((now));
-        // var tz = now.toString().split("GMT");
-        // tz = ((tz[0]).split(" ")[4]);
-        // var min = (tz.split(":")[1]);
-        // var hour = (tz.split(":")[0]);
-        // var am = " AM";
-        // if(hour>12) {
-        //     hour -= 12
-        //     am = " PM"
-        // }
-        // return (hour + ":" + min + am);
-    }
-
-    //timezone = $.getJSON("https://www.amdoren.com/api/timezone.php?api_key=qer6be5kLvhm5ci5mfWP9cUzdYQV46&loc=New+York",getCurrentTime, "jsonp");
-    //New Key -> https://www.amdoren.com/api/timezone.php?api_key=uL6BPxuYcFxqzg5NLMR8Gsixj8d7LW&loc=Chicago
-
-    function logResults(json){
-        console.log(json);
-    }
-
-    function getPictureAveragePixel(){
-        const image = document.getElementsByClassName('weather');
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
-        const width = 420;
-        const height = 140;
-
-        canvas.width = width;
-        canvas.height = height;
-
-        context.drawImage(image, 0, 0, width, height);
-
-        const data = context.getImageData(X, Y, 1, 1).data;
-
-        RED   = data[0]
-        GREEN = data[1]
-        BLUE  = data[2]
-        ALPHA = data[3]
-        return(RED, GREEN, BLUE);
-    }
-    console.log(getPictureAveragePixel());
-    
     function getTimeZone(data) {
 
         currentTime = (data.data.time_zone["0"].localtime).split(" ")[1];
         if(currentTime.split(":")[0] > 12) {
             currentTime = currentTime.split(":")[0] - 12 + ":" + currentTime.split(":")[1] + ' PM';
-        } else {
+        } else if(currentTime.split(":")[0] == 12) {
+            currentTime = currentTime.split(":")[0] + ":" + currentTime.split(":")[1] + ' PM';
+        }
+
+        else {
             currentTime = currentTime + ' AM';
         }
-        console.log(currentTime);
+        $('span#time').html(currentTime);
     }
 
     //https://www.amdoren.com/api/timezone.php?api_key=qer6be5kLvhm5ci5mfWP9cUzdYQV46&loc=New+York
-
 
     function click() {
         city = $('#enteredCity').val();
         timezone = $.getJSON("http://api.worldweatheronline.com/premium/v1/tz.ashx?q=" + city + "&key=" + config.timeAPI + "&format=json",getTimeZone, "jsonp");
         //timeNow = $.getJSON("https://www.amdoren.com/api/timezone.php?api_key=qer6be5kLvhm5ci5mfWP9cUzdYQV46&loc=New+York", getCurrentTime, "jsonp");
-
 
         // tempFormat = parseInt(tempFormat);
         var tempFormat = $('#tempFormat').val();
@@ -179,20 +147,21 @@ $(document).ready(function() {
         var utcSeconds = dateTime;
         var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
         d.setUTCSeconds(utcSeconds);
-        console.log(d);
+        //console.log(d);
 
 
         var currentIcon = data.weather[0].icon;
         var iconURL = "http://openweathermap.org/img/w/" + currentIcon + ".png";
         currentTemperature = Math.floor(currentTemperature);
-
-        document.getElementById("city").innerHTML = currentCity;
-        $(".city").html(currentCity + ",");
+        // document.getElementById("city").innerHTML = currentCity;
+        $('.city').html(currentCity);
+        $("location > .city").html(currentCity + ",");
         $(".country").html(currentCountry);
         $("#loc").html(currentCity + ", " + currentCountry);
-        currentTime = getCurrentTime();
+        // currentTime = getCurrentTime();
         $("#time").html(currentTime);
         // document.getElementById("country").innerHTML = currentCountry;
+
         document.getElementById("weather").innerHTML = currentWeather;
         document.getElementById('maxTemp').innerHTML = "High: " + maxTemp;
         document.getElementById('minTemp').innerHTML = "Low: " + minTemp;
@@ -237,8 +206,5 @@ $(document).ready(function() {
     });
 
 
-    // $('#enteredCity, #tempFormat').change(function(){
-    //     click();
-    // });
 
 });//end ready function

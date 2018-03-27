@@ -71,7 +71,7 @@ select {
 .weather {
   background: black;
   background: url("https://unsplash.it/1600/900?gravity=east") no-repeat 50% 50%;
-  background-position: center;
+  background-position: bottom center;
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 60vh;
@@ -81,8 +81,11 @@ select {
 
 .location {
   position: absolute;
-  top: 50px;
-  left: 50px; }
+  top: 40px;
+  left: 40px;
+  padding: 5px 10px; }
+  .location span {
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.75); }
 
 .date-time {
   position: absolute;
@@ -112,7 +115,7 @@ select {
   .date-time #loc, .date-time #time {
     display: block; }
 
-.city {
+.city, #txt {
   color: rgba(255, 255, 255, 0.9);
   font-weight: 600;
   letter-spacing: 2px;
@@ -175,3 +178,87 @@ select {
     font-size: 15rem; }
   .weather-info .current-weather {
     color: orange; }
+
+/* Dynamic input width */
+#txt {
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  padding-bottom: 0;
+  color: red;
+  background-color: transparent;
+  border-bottom-color: rgba(0, 0, 0, 0.25) #txt; }
+  #txt :focus {
+    outline: 0 !important; }
+
+/* Round Switch */
+.switch {
+  position: absolute;
+  right: 60px;
+  display: inline-block;
+  width: 47px;
+  height: 21px; }
+
+.switch input {
+  display: none; }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  -o-transition: .4s;
+  transition: .4s; }
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  -o-transition: .4s;
+  transition: .4s; }
+
+input + .slider {
+  background-color: #a29494; }
+
+input:checked + .slider {
+  background-color: #2196F3; }
+
+input:focus + .slider {
+  -webkit-box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #2196F3; }
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px); }
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px; }
+
+.slider.round:before {
+  border-radius: 50%; }
+
+@media screen and (max-width: 768px) {
+  .col-md-6 {
+    padding-left: 0;
+    padding-right: 0; }
+  .container {
+    width: 100%;
+    padding: 0px;
+    margin: 0px; }
+  .date-time {
+    display: none; }
+  .location {
+    text-align: center;
+    width: 100%;
+    left: 0; } }
