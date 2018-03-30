@@ -1,6 +1,50 @@
 
 $(document).ready(function() {
 
+    /* Toggle Temperature from checkbox */
+    $("label.switch > input").change(function() {
+        var setval = this.checked ? "f" : "c";
+        $('#tempFormat').val(setval);
+        click();
+    });
+
+    $('button').click(function () {
+        console.log("Clicked!");
+    });
+
+
+    var input = $('#txt');
+    input.on('keydown', function() {
+        var key = event.keyCode || event.charCode;
+        if (key ==  13) {
+            console.log("Enter");
+            if((input.val().length > 1) && (key == 13) ) {
+                $('#enteredCity').val(input.val());
+                $('button.btn-success').click();
+                console.log("Enter");
+            }
+        } else {
+            var cache = $('#txt')
+            var textLength = cache.val().length + 1;
+
+            if( key == 8 || key == 46 ) { textLength -=2; }
+
+            var width = textLength * 35;
+            width = width + "px";
+
+            if(textLength < 3) {
+                width = textLength * 45;
+                width = width + "px";
+            }
+            cache.css({
+                "min-width": "60px",
+                "width": width
+            });
+        }
+    });
+
+
+
     var city, state, country, countryCode, timezone, bgimages, imgURL;
     var currentTime;
     var appID = config.appID;
@@ -16,7 +60,6 @@ $(document).ready(function() {
         //console.log(number);
         // imgURLfull = data.results[number].urls.full;
         imgURL = data.results[number].urls.regular;
-        console.log(imgURL);
         // bgimages = data.results;
     }
 
@@ -43,7 +86,13 @@ $(document).ready(function() {
 
     function getImage() {
         setTimeout(function() {
-            $('.weather').css('background-image', 'url('+imgURL+')');
+            /* Set the background image from City name, if error, display fallback image */
+            if(imgURL) {
+                $('.weather').css('background-image', 'url('+imgURL+')');
+            } else {
+                var fallBack = "/images/Clear.jpg";
+                $('.weather').css('background-image', 'url('+fallBack+')');
+            }
         }, 500);
     }
     getImage();
@@ -88,6 +137,13 @@ $(document).ready(function() {
     //https://www.amdoren.com/api/timezone.php?api_key=qer6be5kLvhm5ci5mfWP9cUzdYQV46&loc=New+York
 
     function click() {
+
+        if ($('#tempFormat').val() == 'f') {
+            $('label.switch > input').prop('checked', true);
+        } else {
+            $('label.switch > input').prop('checked', false);
+        }
+
         city = $('#enteredCity').val();
         timezone = $.getJSON("http://api.worldweatheronline.com/premium/v1/tz.ashx?q=" + city + "&key=" + config.timeAPI + "&format=json",getTimeZone, "jsonp");
         //timeNow = $.getJSON("https://www.amdoren.com/api/timezone.php?api_key=qer6be5kLvhm5ci5mfWP9cUzdYQV46&loc=New+York", getCurrentTime, "jsonp");

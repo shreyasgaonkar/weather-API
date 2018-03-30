@@ -185,7 +185,7 @@ select {
   border-right: 0;
   border-top: 0;
   padding-bottom: 0;
-  color: red;
+  color: white;
   background-color: transparent;
   border-bottom-color: rgba(0, 0, 0, 0.25) #txt; }
   #txt :focus {
