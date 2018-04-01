@@ -50,7 +50,7 @@ $(document).ready(function() {
     var appID = config.appID;
     var appSecret = config.appSecret;
 
-    var rawData = $.getJSON('http://freegeoip.net/json/',loc, "jsonp");
+    var rawData = $.getJSON('//freegeoip.net/json/',loc, "jsonp");
 
     function img(data) {
         var len = (data.results).length;
@@ -77,7 +77,7 @@ $(document).ready(function() {
         countryCode = fullData.country_code;
 
         // Uncomment this line later
-        var bgImg = $.getJSON("https://api.unsplash.com/search/photos?page=1&query="+ city +"&client_id=" + appID, img, "jsonp");
+        var bgImg = $.getJSON("//api.unsplash.com/search/photos?page=1&query="+ city +"&client_id=" + appID, img, "jsonp");
 
         $('#enteredCity').val(city);
         //trigger the click
@@ -145,7 +145,7 @@ $(document).ready(function() {
         }
 
         city = $('#enteredCity').val();
-        timezone = $.getJSON("http://api.worldweatheronline.com/premium/v1/tz.ashx?q=" + city + "&key=" + config.timeAPI + "&format=json",getTimeZone, "jsonp");
+        timezone = $.getJSON("//api.worldweatheronline.com/premium/v1/tz.ashx?q=" + city + "&key=" + config.timeAPI + "&format=json",getTimeZone, "jsonp");
         //timeNow = $.getJSON("https://www.amdoren.com/api/timezone.php?api_key=qer6be5kLvhm5ci5mfWP9cUzdYQV46&loc=New+York", getCurrentTime, "jsonp");
 
         // tempFormat = parseInt(tempFormat);
@@ -168,7 +168,7 @@ $(document).ready(function() {
 
             $(".well").removeClass( "hidden" );
             $(".well").addClass( "animate" );
-            var api = "http://api.openweathermap.org/data/2.5/weather?q=";
+            var api = "//api.openweathermap.org/data/2.5/weather?q=";
             // var city = "Chicago";
             var apiKey = "&appid=e5443695562b2564371d9390c830bc1f"; //Change API Key
             // var units = "&units=imperial";
@@ -207,7 +207,7 @@ $(document).ready(function() {
 
 
         var currentIcon = data.weather[0].icon;
-        var iconURL = "http://openweathermap.org/img/w/" + currentIcon + ".png";
+        var iconURL = "//openweathermap.org/img/w/" + currentIcon + ".png";
         currentTemperature = Math.floor(currentTemperature);
         // document.getElementById("city").innerHTML = currentCity;
         $('.city').html(currentCity);
@@ -242,7 +242,7 @@ $(document).ready(function() {
         $("div.current-weather").html(tempFormat);
         //Change background image to match with the current weather
         var currentBackgroundImg = currentWeather+".jpg";
-        currentBackgroundImg = '"' + "http://d252geuwm6rln6.cloudfront.net/"+ currentBackgroundImg +'"';
+        currentBackgroundImg = '"' + "//d252geuwm6rln6.cloudfront.net/"+ currentBackgroundImg +'"';
         // console.log(currentBackgroundImg);
         $('.well').css('backgroundImage','url('+currentBackgroundImg+')');
     }//end gotData
@@ -253,7 +253,7 @@ $(document).ready(function() {
     });
     $("#enteredCity").change(function() {
         var city = $("#enteredCity").val();
-        var bgImg = $.getJSON("https://api.unsplash.com/search/photos?page=1&query="+ city +"&client_id=" + appID, img, "jsonp");
+        var bgImg = $.getJSON("//api.unsplash.com/search/photos?page=1&query="+ city +"&client_id=" + appID, img, "jsonp");
         getImage();
         click();
     });
