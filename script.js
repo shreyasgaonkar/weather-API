@@ -50,7 +50,7 @@ $(document).ready(function() {
     var appID = config.appID;
     var appSecret = config.appSecret;
 
-    var rawData = $.getJSON('//freegeoip.net/json/',loc, "jsonp");
+    var rawData = $.getJSON('https//freegeoip.net/json/',loc, "jsonp");
 
     function img(data) {
         var len = (data.results).length;
