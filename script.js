@@ -8,12 +8,13 @@ $(document).ready(function() {
         click();
     });
 
-    $('button').click(function () {
-        console.log("Clicked!");
-    });
 
+    /* Set the Default city on Search */
 
     var input = $('#txt');
+    input.val($('#enteredCity').val());
+
+    //
     input.on('keydown', function() {
         var key = event.keyCode || event.charCode;
         if (key ==  13) {
@@ -50,7 +51,7 @@ $(document).ready(function() {
     var appID = config.appID;
     var appSecret = config.appSecret;
 
-    var rawData = $.getJSON('https://freegeoip.net/json/',loc, "jsonp");
+    var rawData = $.getJSON('http://api.ipstack.com/check?access_key='+ config.loc ,loc, "jsonp");
 
     function img(data) {
         var len = (data.results).length;
@@ -66,6 +67,7 @@ $(document).ready(function() {
     var fullData;
     function loc(data) {
         fullData=data;
+        //console.log(data)
     }
 
     // Set location as per the ip address from ISP
@@ -97,28 +99,6 @@ $(document).ready(function() {
     }
     getImage();
 
-    //
-    // $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + city + "&key=" + config.google,getCurrentTime, "jsonp");
-    //
-    //
-    // function getCurrentTime(data) {
-    //     var location = (data.results["0"].geometry.location);
-    //     var latitude = location.lat;
-    //     var longitude = location.lng;
-    //
-    //     console.log("latitude is " + latitude);
-    //     console.log("longitude is " + longitude);
-    //
-    //     //https://maps.googleapis.com/maps/api/timezone/json?location=37.77492950,-122.41941550&timestamp=1331161200&sensor=false
-    //
-    //     $.getJSON("https://maps.googleapis.com/maps/api/timezone/json?location=" + latitude + "," + longitude, gotData, "jsonp");
-    //
-    //     function gotData(data){
-    //         console.log(currentTime)
-    //     }
-    // }
-
-
     function getTimeZone(data) {
 
         currentTime = (data.data.time_zone["0"].localtime).split(" ")[1];
@@ -138,6 +118,11 @@ $(document).ready(function() {
 
     function click() {
 
+        /* Set Value of search == city name */
+        var inputCity = $('#txt');
+        inputCity.val($('#enteredCity').val());
+
+        /* Check the value of slider */
         if ($('#tempFormat').val() == 'f') {
             $('label.switch > input').prop('checked', true);
         } else {
@@ -146,17 +131,13 @@ $(document).ready(function() {
 
         city = $('#enteredCity').val();
         timezone = $.getJSON("//api.worldweatheronline.com/premium/v1/tz.ashx?q=" + city + "&key=" + config.timeAPI + "&format=json",getTimeZone, "jsonp");
-        //timeNow = $.getJSON("https://www.amdoren.com/api/timezone.php?api_key=qer6be5kLvhm5ci5mfWP9cUzdYQV46&loc=New+York", getCurrentTime, "jsonp");
 
-        // tempFormat = parseInt(tempFormat);
         var tempFormat = $('#tempFormat').val();
-
         if(tempFormat == "f")
         {
             var units = "&units=imperial";
             var unitDegree = "&#8457";
-        }else
-        {
+        } else {
             var units = "&units=metric";
             var unitDegree = "&#8457";
         }
@@ -194,11 +175,6 @@ $(document).ready(function() {
         var maxTemp = data.main.temp_max;
         var dateTime = data.dt;
         var myDate = new Date(dateTime);
-
-        // Create a new JavaScript Date object based on the timestamp
-        // var date = new Date(dateTime*1000);
-        // var hours = date.getHours(); var minutes = "0" + date.getMinutes(); var seconds = "0" + date.getSeconds();
-        // var currentDateTime = formattedTime = hours + ':' + minutes.substr(-2);
 
         var utcSeconds = dateTime;
         var d = new Date(0); // The 0 there is the key, which sets the date to the epoch

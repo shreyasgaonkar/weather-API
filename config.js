@@ -3,7 +3,7 @@ var config = {
     appSecret: '13449f604d8019a479eb8b9500d89ec37a83ef58253a4c338bf4f3870d02e57b',
     // timeAPI: '0c485ad4ffc3435b9aa11650171310',
     timeAPI: 'd8a8fac804da469bbf8175052182503',
-
+    loc: '0f53f67b6dbf330908f89139646c8978',
     //amdoren: 'qer6be5kLvhm5ci5mfWP9cUzdYQV46',
     google: 'AIzaSyAggKUYNCN63nyuJITBqI8usRcH_GDwzck'
 }
