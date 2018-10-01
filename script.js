@@ -51,7 +51,7 @@ $(document).ready(function() {
     var appID = config.appID;
     var appSecret = config.appSecret;
 
-    var rawData = $.getJSON('http://api.ipstack.com/check?access_key='+ config.loc ,loc, "jsonp");
+    var rawData = $.getJSON('https://api.ipstack.com/check?access_key='+ config.loc ,loc, "jsonp");
 
     function img(data) {
         var len = (data.results).length;
