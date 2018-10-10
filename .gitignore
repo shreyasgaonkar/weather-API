@@ -5,7 +5,7 @@ ehthumbs.db
 *.config
 /src/
 sitemap.xml
-#config.js
+config.js
 script1.js
 node_modules
 images

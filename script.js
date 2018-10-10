@@ -51,7 +51,7 @@ $(document).ready(function() {
     var appID = config.appID;
     var appSecret = config.appSecret;
 
-    var rawData = $.getJSON('https://api.ipstack.com/check?access_key='+ config.loc ,loc, "jsonp");
+    var rawData = $.getJSON('//api.ipstack.com/check?access_key='+ config.loc ,loc, "jsonp");
 
     function img(data) {
         var len = (data.results).length;
@@ -67,7 +67,6 @@ $(document).ready(function() {
     var fullData;
     function loc(data) {
         fullData=data;
-        //console.log(data)
     }
 
     // Set location as per the ip address from ISP
@@ -77,6 +76,8 @@ $(document).ready(function() {
         state = fullData.region_code;
         country = fullData.country_name;
         countryCode = fullData.country_code;
+        _lat = fullData.latitude;
+        _long = fullData.longitude;
 
         // Uncomment this line later
         var bgImg = $.getJSON("//api.unsplash.com/search/photos?page=1&query="+ city +"&client_id=" + appID, img, "jsonp");
@@ -114,7 +115,6 @@ $(document).ready(function() {
         $('span#time').html(currentTime);
     }
 
-    //https://www.amdoren.com/api/timezone.php?api_key=qer6be5kLvhm5ci5mfWP9cUzdYQV46&loc=New+York
 
     function click() {
 
@@ -130,7 +130,28 @@ $(document).ready(function() {
         }
 
         city = $('#enteredCity').val();
-        timezone = $.getJSON("//api.worldweatheronline.com/premium/v1/tz.ashx?q=" + city + "&key=" + config.timeAPI + "&format=json",getTimeZone, "jsonp");
+        //timezone = $.getJSON("//api.timezonedb.com/v2.1/get-time-zone?key=" + config.timezonedb + "&format=json&by=position&lat=" + _lat + "&lng=" + _long)
+        //timezone = $.getJSON("//api.worldweatheronline.com/premium/v1/tz.ashx?q=" + city + "&key=" + config.timeAPI + "&format=json",getTimeZone, "jsonp");
+
+        $.getJSON("//api.timezonedb.com/v2.1/get-time-zone?key=" + config.timezonedb + "&format=json&by=position&lat=" + _lat + "&lng=" + _long, getTime, "jsonp");
+
+        function getTime(data){
+
+          currentTime = (data.formatted).split(" ");
+          currentTime = currentTime[1]
+
+          if(currentTime.split(":")[0] > 12) {
+              currentTime = currentTime.split(":")[0] - 12 + ":" + currentTime.split(":")[1] + ' PM';
+          } else if(currentTime.split(":")[0] == 12) {
+              currentTime = currentTime.split(":")[0] + ":" + currentTime.split(":")[1] + ' PM';
+          }
+          else {
+              currentTime = currentTime + ' AM';
+          }
+          $('span#time').html(currentTime);
+          $('#txt').focus();
+        }
+
 
         var tempFormat = $('#tempFormat').val();
         if(tempFormat == "f")

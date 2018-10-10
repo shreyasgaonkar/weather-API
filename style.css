@@ -132,6 +132,7 @@ select {
   background: transparent !important; }
 
 .weather-options {
+  display: none; 
   width: 100%;
   position: absolute;
   bottom: 0 !important;
@@ -181,15 +182,20 @@ select {
 
 /* Dynamic input width */
 #txt {
-  border-left: 0;
+  /*border-left: 0;
   border-right: 0;
   border-top: 0;
+  */
+  border: 0;
   padding-bottom: 0;
   color: white;
   background-color: transparent;
-  border-bottom-color: rgba(0, 0, 0, 0.25) #txt; }
-  #txt :focus {
-    outline: 0 !important; }
+  /* border-bottom-color: rgba(0, 0, 0, 0.25) #txt; */
+ }
+  #txt:focus {
+    outline: 0 !important;
+    border: 0 !important;
+   }
 
 /* Round Switch */
 .switch {
