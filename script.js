@@ -46,10 +46,10 @@ $(document).ready(function() {
 
 
 
-    var city, state, country, countryCode, timezone, bgimages, imgURL;
+    var city, imgURL;
     var currentTime;
     var appID = config.appID;
-    var appSecret = config.appSecret;
+    //var appSecret = config.appSecret;
 
     var rawData = $.getJSON('//api.ipstack.com/check?access_key='+ config.loc ,loc, "jsonp");
 
@@ -100,6 +100,7 @@ $(document).ready(function() {
     }
     getImage();
 
+    /*
     function getTimeZone(data) {
 
         currentTime = (data.data.time_zone["0"].localtime).split(" ")[1];
@@ -114,7 +115,7 @@ $(document).ready(function() {
         }
         $('span#time').html(currentTime);
     }
-
+    */
 
     function click() {
 
@@ -195,7 +196,7 @@ $(document).ready(function() {
         var minTemp = data.main.temp_min;
         var maxTemp = data.main.temp_max;
         var dateTime = data.dt;
-        var myDate = new Date(dateTime);
+        //var myDate = new Date(dateTime);
 
         var utcSeconds = dateTime;
         var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
@@ -203,7 +204,7 @@ $(document).ready(function() {
         //console.log(d);
 
 
-        var currentIcon = data.weather[0].icon;
+        /var currentIcon = data.weather[0].icon;
         var iconURL = "//openweathermap.org/img/w/" + currentIcon + ".png";
         currentTemperature = Math.floor(currentTemperature);
         // document.getElementById("city").innerHTML = currentCity;
