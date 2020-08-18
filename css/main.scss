@@ -15,6 +15,97 @@ html {
   box-sizing: border-box;
 }
 
+.credits {
+  font-size: 0.65rem;
+  opacity: 0.5;
+  color: #c2dea0 !important;
+  text-align: center;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  text-decoration: underline;
+  animation: fade 1s ease-in-out;
+
+  a {
+    color: inherit;
+
+    &:hover {
+      color: black;
+    }
+  }
+}
+
+/* Round Switch */
+
+.switch {
+  position: absolute;
+  left: 50%;
+  display: inline-block;
+  width: 47px;
+  height: 21px;
+  z-index: 100;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  // height: 26px;
+  height: 15px;
+  // width: 26px;
+  width: 15px;
+  // left: 4px;
+  left: 3px;
+  // bottom: 4px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input + .slider {
+  background-color: #a29494;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
 // Main styles
 section#bg {
   width: 100%;
@@ -34,13 +125,22 @@ section#bg {
     background-color: rgba(black, 0.15);
   }
 
+  #temperature > h1 {
+    cursor: context-menu;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   #city {
     input {
       font-size: 2rem;
       background: transparent;
       border: 0;
       width: -webkit-fill-available;
-      // cursor: pointer;
+      padding: 0;
+      color: inherit;
 
       &:focus {
         border: 0;
